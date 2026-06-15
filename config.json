@@ -1,0 +1,78 @@
+{
+  "abuseipdb_key": "",
+  "ids": {
+    "pdp_url": "https://192.168.50.1:5000/alert",
+    "api_key": "a3f8c2e1d4b7a9f0e6c3d2b1a8f7e4c9d0b3a6f2e1c8d5b4a7f0e3c2d9b6a1f4",
+    "default_threshold": 10,
+    "sniff_interface": "ens33",
+    "whitelist": [
+      "192.168.50.1",
+      "192.168.50.135"
+    ],
+    "alert_cooldown_seconds": 2.0,
+    "baseline_min_samples": 10
+  },
+  "pdp": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "pep_url": "https://192.168.50.135:5001/execute",
+    "api_key_ids": "a3f8c2e1d4b7a9f0e6c3d2b1a8f7e4c9d0b3a6f2e1c8d5b4a7f0e3c2d9b6a1f4",
+    "api_key_pep": "b4e9d2c7f1a0e8d3c6b5a4f3e2d1c0b9a8f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3",
+    "db_file": "security.db",
+    "hmac_secret": "7f3a9c2e1d4b8f0e6c3d2b1a8f7e4c9d0b3a6f2e1c8d5b4a7f0e3c2d9b6a1f48",
+    "trust_recovery_hours": 1,
+    "trust_recovery_points": 5,
+    "trust_decrease_on_attack": 20,
+    "trust_threshold_auto_block": 30,
+    "permanent_block_duration": 86400,
+    "alert_rate_limit_per_min": 60,
+    "ids_whitelist_ips": [
+      "192.168.50.135"
+    ]
+  },
+  "pep": {
+    "host": "0.0.0.0",
+    "port": 5001,
+    "pdp_ip": "192.168.50.1",
+    "api_key": "b4e9d2c7f1a0e8d3c6b5a4f3e2d1c0b9a8f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3",
+    "watchdog_window_seconds": 60,
+    "max_block_duration_sec": 86400
+  },
+  "dashboard": {
+    "host": "0.0.0.0",
+    "port": 8080,
+    "pdp_url": "https://192.168.50.1:5000",
+    "pep_url": "https://192.168.50.135:5001",
+    "hmac_secret": "7f3a9c2e1d4b8f0e6c3d2b1a8f7e4c9d0b3a6f2e1c8d5b4a7f0e3c2d9b6a1f48"
+  },
+  "zones": [
+    {
+      "victim_ip": "192.168.50.135",
+      "zone_name": "RED",
+      "threshold": 10,
+      "block_duration": 300,
+      "min_trust": 70
+    },
+    {
+      "victim_ip": "192.168.50.135",
+      "zone_name": "YELLOW",
+      "threshold": 15,
+      "block_duration": 120,
+      "min_trust": 50
+    },
+    {
+      "victim_ip": "192.168.50.135",
+      "zone_name": "GREEN",
+      "threshold": 20,
+      "block_duration": 60,
+      "min_trust": 30
+    }
+  ],
+  "exponential_backoff": [
+    60,
+    120,
+    300,
+    600,
+    3600
+  ]
+}
